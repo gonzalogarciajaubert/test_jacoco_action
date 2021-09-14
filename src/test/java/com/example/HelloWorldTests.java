@@ -1,19 +1,22 @@
 package com.example;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * JUnit test cases for the example of test coverage.
  */
-public class HelloWorldTests {
-	
+class HelloWorldTests {
+
 	@Test
 	public void test1() {
 		HelloWorld hw = new HelloWorld();
 		assertEquals("Hello World!", hw.getGreeting());
 	}
-	
+
 	@Test
 	public void test2() {
 		HelloWorld hw = new HelloWorld();

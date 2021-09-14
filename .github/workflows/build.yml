@@ -12,7 +12,7 @@
 #    then change package to test. Jacoco is configured to run
 #    during the test phase, so either one is sufficient for the
 #    purposes of this example.
-# 4) Runs the jacoco-badge-generator to generate both the 
+# 4) Runs the jacoco-badge-generator to generate both the
 #    coverage and branches coverage badges to the default directory
 #    which is .github/badges. That directory will be created if it
 #    doesn't exist.
@@ -23,13 +23,13 @@
 #    can use for this step instead if you wish. In this example, we just
 #    use a simple command line script. It sets the committer to the
 #    GitHub Actions bot. Also notice that this step is conditional and
-#    only runs if the workflow was triggered by a push or workflow_dispatch, 
-#    and not by a pull request. Why?  Well, for one, the workflow will be 
-#    in a detached head state if triggered by a pull request.  Additionally, 
-#    you may or may not choose to merge a pull request, and should only really 
-#    update the coverage badges if you choose to accept the changes by merging 
-#    the pull request, at which point this will be handled by the push that 
-#    occurs with the merge. 
+#    only runs if the workflow was triggered by a push or workflow_dispatch,
+#    and not by a pull request. Why?  Well, for one, the workflow will be
+#    in a detached head state if triggered by a pull request.  Additionally,
+#    you may or may not choose to merge a pull request, and should only really
+#    update the coverage badges if you choose to accept the changes by merging
+#    the pull request, at which point this will be handled by the push that
+#    occurs with the merge.
 # 7) The last step uploads the JaCoCo reports as a workflow artifact.
 #    In this way, if you want to inspect the details, you can do so
 #    via the actions tab of your repository. That step essentially attaches
@@ -39,8 +39,8 @@
 #
 # A Few Notes:
 # If your main branch is protected and includes either required checks or
-# required reviews, then the push step will fail (this is true even if you 
-# use one of the available actions for pushing). To get around this, one 
+# required reviews, then the push step will fail (this is true even if you
+# use one of the available actions for pushing). To get around this, one
 # option is to see GitHub's documentation on using a personal access token (PAT)
 # with the actions/checkout step. However, some of the other workflows in this
 # directory provide alternatives that do not require additional access.
@@ -66,11 +66,12 @@ jobs:
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
-        distribution: 'adopt'
         java-version: '11'
-
-    - name: Build with Maven
-      run: mvn -B package
+        distribution: 'adopt'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      run: ./gradlew build
 
     - name: Generate Jacoco Badge
       id: jacoco
