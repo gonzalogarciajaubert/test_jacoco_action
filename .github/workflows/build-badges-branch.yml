@@ -100,6 +100,9 @@ jobs:
       with:
         badges-directory: badges
         generate-branches-badge: true
+        jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
+        fail-if-branches-less-than: 0.10
+        fail-if-coverage-less-than: 0.70
 
     - name: Log coverage percentage
       run: |
@@ -122,4 +125,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jacoco-report
-        path: target/site/jacoco/
+        path: build/reports/jacoco/
