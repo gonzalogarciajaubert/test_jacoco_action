@@ -83,6 +83,8 @@ jobs:
       with:
         generate-branches-badge: true
         jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
+        fail-if-branches-less-than: 0.20
+        fail-if-coverage-less-than: 0.80
 
     - name: Log coverage percentage
       run: |
